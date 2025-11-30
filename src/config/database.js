@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
-const mongoURI = "mongodb+srv://cous:1234@cluster0.7cvs1o1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const mongoURI =
 
 mongoose.connect(mongoURI, { })
     .then(() => console.log("MongoDB connected"))
