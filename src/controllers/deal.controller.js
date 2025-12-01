@@ -35,10 +35,6 @@ export const getDeals = async (req, res) => {
         const skip = (page - 1) * limit;
 
         const filter = {};
-        // if not admin/moderator, only approved
-        if (!req.user || req.user.role === "user") {
-            filter.status = "approved";
-        }
 
         const [total, deals] = await Promise.all([
             Deal.countDocuments(filter),
@@ -66,11 +62,6 @@ export const searchDeals = async (req, res) => {
         const q = req.query.q || "";
         const regex = new RegExp(q, "i");
         const filter = { $or: [{ title: regex }, { description: regex }] };
-
-        // status filter for non-moderator/admin
-        if (!req.user || req.user.role === "user") {
-            filter.status = "approved";
-        }
 
         const deals = await Deal.find(filter).sort({ createdAt: -1 })
             .populate({ path: "authorId", select: "username email -_id" });

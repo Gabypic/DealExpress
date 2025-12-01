@@ -26,7 +26,7 @@ const handleValidation = (req, res, next) => {
 router.get("/", authenticate, getDeals);
 
 // Search deals
-router.get("/search", authenticate, searchDeals);
+router.get("/search",authenticate, searchDeals);
 
 // Get a deal
 router.get("/:id", authenticate, getDealById);
